@@ -1,9 +1,11 @@
-import { FaArrowRight, FaBeer } from 'react-icons/fa';
+import { FaArrowRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 
 const ServiceCard = ({ service }) => {
-    const { title, img, price } = service;
-    console.log(service);
+    const { _id, title, img, price } = service;
+
+    // console.log(service);
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
             <figure className="px-10 pt-10">
@@ -15,7 +17,8 @@ const ServiceCard = ({ service }) => {
 
                 <div className="card-actions flex justify-end">
 
-                    <button > <FaArrowRight className='text-[#FF3811]' ></FaArrowRight>  </button>
+                    {/* <Link to='/checkout/:id'><button > <FaArrowRight className='text-[#FF3811]' ></FaArrowRight>  </button></Link> */}
+                    <Link to={`/checkout/${_id}`}><button > <FaArrowRight className='text-[#FF3811]' ></FaArrowRight>  </button></Link>
                 </div>
             </div>
         </div>
