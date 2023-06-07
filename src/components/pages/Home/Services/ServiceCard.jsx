@@ -18,7 +18,7 @@ const ServiceCard = ({ service }) => {
                 <div className="card-actions flex justify-end">
 
                     {/* <Link to='/checkout/:id'><button > <FaArrowRight className='text-[#FF3811]' ></FaArrowRight>  </button></Link> */}
-                    <Link to={`/checkout/${_id}`}><button > <FaArrowRight className='text-[#FF3811]' ></FaArrowRight>  </button></Link>
+                    <Link to={`/book/${_id}`}><button > <FaArrowRight className='text-[#FF3811]' ></FaArrowRight>  </button></Link>
                 </div>
             </div>
         </div>

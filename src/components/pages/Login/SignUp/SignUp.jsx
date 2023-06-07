@@ -30,7 +30,7 @@ const SignUp = () => {
     }
 
     return (
-        <div className="hero min-h-screen bg-base-200">
+        <div className="hero min-h-screen bg-base-200 mt-12">
             <div className="hero-content flex-col lg:flex-row">
                 <div className="w-1/2 mr-12">
 
