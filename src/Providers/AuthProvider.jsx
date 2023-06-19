@@ -37,7 +37,7 @@ const AuthProvider = ({ children }) => {
                     email: currentUser?.email
                 }
 
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://car-doctor-server-dusky-five.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -46,7 +46,7 @@ const AuthProvider = ({ children }) => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data);
+                      
                         // Warning: localStorage is not best place (it is second place) to store access token
                         localStorage.setItem('car-access-token', data.token);
                     })

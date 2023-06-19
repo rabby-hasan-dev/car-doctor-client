@@ -29,7 +29,7 @@ const router = createBrowserRouter([
             {
                 path: 'book/:id',
                 element: <BookServices></BookServices>,
-                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+                loader: ({ params }) => fetch(`https://car-doctor-server-dusky-five.vercel.app/services/${params.id}`)
             },
             {
                 path: 'bookings',
@@ -39,7 +39,7 @@ const router = createBrowserRouter([
             // {
             //     path: 'checkout/:id',
             //     element: <CheckOut></CheckOut>,
-            //    loader:({params})=>fetch(`http://localhost:5000/services/${params.id}`)
+            //    loader:({params})=>fetch(`https://car-doctor-server-dusky-five.vercel.app/services/${params.id}`)
             // }
         ]
     },
