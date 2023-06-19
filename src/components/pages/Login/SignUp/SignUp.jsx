@@ -63,7 +63,7 @@ const SignUp = () => {
                             </div>
                             <div className="form-control mt-6">
 
-                                <input className="btn btn-primary" type="submit" value="Login" />
+                                <input className="btn btn-primary" type="submit" value="Sign Up" />
                             </div>
 
                         </form>

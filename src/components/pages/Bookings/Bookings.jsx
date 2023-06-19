@@ -1,18 +1,35 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import BookingTable from "./BookingTable";
+import { useNavigate } from "react-router-dom";
 
 const Bookings = () => {
+    const navigate = useNavigate();
 
     const { user } = useContext(AuthContext);
     const [bookings, setBookings] = useState([])
     const url = `http://localhost:5000/bookings?email=${user?.email}`
 
     useEffect(() => {
-        fetch(url)
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('car-access-token')}`
+            }
+        })
             .then(res => res.json())
-            .then(data => setBookings(data));
-    }, [])
+            .then(data => {
+                if (!data.error) {
+
+                    setBookings(data)
+                }
+                else {
+                    // do: logout then navigate
+                    navigate('/')
+                }
+
+            });
+    }, [url])
 
 
     const handleDelete = (id) => {
@@ -32,6 +49,28 @@ const Bookings = () => {
                 })
 
         }
+    }
+
+    const handleBookingConfirm = (id) => {
+        fetch(`http://localhost:5000/bookings/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ status: 'confirm' })
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.modifiedCount > 0) {
+                    alert('Confirm successfully')
+                    const remaining = bookings.filter(booking => booking._id !== id);
+                    const update = bookings.find(booking => booking._id == id);
+                    update.status = 'confirm';
+                    const newBooking = [update, ...remaining];
+                    setBookings(newBooking);
+                }
+            })
     }
 
     return (
@@ -67,6 +106,7 @@ const Bookings = () => {
                                 key={index + 1}
                                 booking={booking}
                                 handleDelete={handleDelete}
+                                handleBookingConfirm={handleBookingConfirm}
 
                             ></BookingTable>)
                         }
